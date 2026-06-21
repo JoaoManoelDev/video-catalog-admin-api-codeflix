@@ -1,4 +1,4 @@
-import { UniqueEntityId } from "@/core/entities/unique-entity-id";
+import { UniqueEntityID } from "@/core/entities/unique-entity-id";
 import { makeCategory } from "../../test/factories/make-category";
 
 import { describe, expect, test } from "vitest";
@@ -37,7 +37,7 @@ describe("Category Entity", () => {
     });
 
     test("should create a category with a custom id when provided", () => {
-      const id = new UniqueEntityId("custom-id");
+      const id = new UniqueEntityID("custom-id");
       const category = makeCategory({}, id);
 
       expect(category.id.toString()).toBe("custom-id");
@@ -106,7 +106,7 @@ describe("Category Entity", () => {
   describe("toJSON", () => {
     test("should return a serializable representation of the category", () => {
       const createdAt = new Date("2024-01-01");
-      const id = new UniqueEntityId("category-id");
+      const id = new UniqueEntityID("category-id");
 
       const category = makeCategory(
         {

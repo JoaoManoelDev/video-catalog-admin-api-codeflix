@@ -1,4 +1,4 @@
-import { UniqueEntityId } from "@/core/entities/unique-entity-id";
+import { UniqueEntityID } from "@/core/entities/unique-entity-id";
 import {
   Category,
   CategoryProps,
@@ -6,7 +6,7 @@ import {
 
 export const makeCategory = (
   override: Partial<CategoryProps> = {},
-  id?: UniqueEntityId,
+  id?: UniqueEntityID,
 ) => {
   const category = Category.create(
     {

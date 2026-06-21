@@ -1,5 +1,5 @@
 import { Entity } from "@/core/entities/entity";
-import { UniqueEntityId } from "@/core/entities/unique-entity-id";
+import { UniqueEntityID } from "@/core/entities/unique-entity-id";
 import { Optional } from "@/core/types/optional";
 
 export interface CategoryProps {
@@ -12,7 +12,7 @@ export interface CategoryProps {
 export class Category extends Entity<CategoryProps> {
   static create(
     props: Optional<CategoryProps, "createdAt">,
-    id?: UniqueEntityId,
+    id?: UniqueEntityID,
   ) {
     const category = new Category(
       {
