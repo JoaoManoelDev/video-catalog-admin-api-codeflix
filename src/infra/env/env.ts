@@ -1,5 +1,5 @@
 import { plainToInstance, Type } from "class-transformer";
-import { IsNumber, IsOptional, validateSync } from "class-validator";
+import { IsNumber, IsOptional, IsString, validateSync } from "class-validator";
 
 export type EnvVariables = {
   [K in keyof Env]: Env[K];
@@ -10,6 +10,9 @@ export class Env {
   @Type(() => Number)
   @IsNumber()
   PORT: number = 3333;
+
+  @IsString()
+  DATABASE_URL: string;
 }
 
 export function validateEnv(config: Record<string, unknown>): Env {
