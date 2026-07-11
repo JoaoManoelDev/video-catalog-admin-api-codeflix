@@ -1,0 +1,13 @@
+services:
+  postgres:
+    container_name: video-catalog-pg
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: video_catalog
+      PGDATA: /data/postgres
+    volumes:
+      - ./data/pg:/data/postgres
