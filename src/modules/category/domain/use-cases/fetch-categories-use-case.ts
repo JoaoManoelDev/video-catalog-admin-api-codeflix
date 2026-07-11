@@ -1,3 +1,5 @@
+import { Injectable } from "@nestjs/common";
+
 import { Either, right } from "@/shared/errors/either";
 import { IPaginationMeta } from "@/shared/repositories/paginated-result";
 import { Category } from "../entities/category-entity";
@@ -17,6 +19,7 @@ type IFetchCategoriesResponse = Either<
   }
 >;
 
+@Injectable()
 export class FetchCategoriesUseCase {
   constructor(private categoryRepository: CategoryRepository) {}
 
