@@ -1,7 +1,7 @@
 import { Module } from "@nestjs/common";
 
-import { CreateCategoryUseCase } from "@/modules/category/domain/use-cases/create-category-use-case";
-import { FetchCategoriesUseCase } from "@/modules/category/domain/use-cases/fetch-categories-use-case";
+import { CreateCategoryUseCase } from "@/modules/category/application/use-cases/create-category";
+import { FetchCategoriesUseCase } from "@/modules/category/application/use-cases/fetch-categories";
 import { DatabaseModule } from "@/infra/database/database.module";
 
 import { CreateCategoryController } from "./controllers/create-category.controller";

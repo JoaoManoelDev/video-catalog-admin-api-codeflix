@@ -2,8 +2,8 @@ import { Injectable } from "@nestjs/common";
 
 import { Either, left, right } from "@/shared/errors/either";
 import { ValidationErrors } from "@/shared/validators/validation-errors";
-import { Category } from "../entities/category-entity";
-import { CategoryRepository } from "../repositories/category-repository";
+import { Category } from "@/modules/category/domain/entities/category";
+import { CategoryRepository } from "@/modules/category/domain/repositories/category-repository";
 
 interface ICreateCategoryRequest {
   name: string;

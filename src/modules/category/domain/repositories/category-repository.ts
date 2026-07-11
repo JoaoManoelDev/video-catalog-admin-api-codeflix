@@ -1,6 +1,6 @@
 import { IPaginatedResult } from "@/shared/repositories/paginated-result";
 import { IQueryParams } from "@/shared/repositories/query-params";
-import { Category } from "../entities/category-entity";
+import { Category } from "../entities/category";
 
 export abstract class CategoryRepository {
   abstract create(category: Category): Promise<Category>;

@@ -1,7 +1,7 @@
 import { BadRequestException, Body, Controller, Post } from "@nestjs/common";
 import { IsOptional, IsString } from "class-validator";
 
-import { CreateCategoryUseCase } from "@/modules/category/domain/use-cases/create-category-use-case";
+import { CreateCategoryUseCase } from "@/modules/category/application/use-cases/create-category";
 
 export class CreateCategoryBodyDto {
   @IsString()

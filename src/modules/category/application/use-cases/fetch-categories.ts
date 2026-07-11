@@ -2,8 +2,8 @@ import { Injectable } from "@nestjs/common";
 
 import { Either, right } from "@/shared/errors/either";
 import { IPaginationMeta } from "@/shared/repositories/paginated-result";
-import { Category } from "../entities/category-entity";
-import { CategoryRepository } from "../repositories/category-repository";
+import { Category } from "@/modules/category/domain/entities/category";
+import { CategoryRepository } from "@/modules/category/domain/repositories/category-repository";
 
 interface IFetchCategoriesRequest {
   page?: number;

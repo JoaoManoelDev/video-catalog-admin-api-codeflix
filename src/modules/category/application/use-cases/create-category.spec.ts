@@ -1,6 +1,6 @@
 import { InMemoryCategoryRepository } from "../../test/repositories/in-memory-category-repository";
-import { CreateCategoryUseCase } from "./create-category-use-case";
-import { Category } from "../entities/category-entity";
+import { CreateCategoryUseCase } from "./create-category";
+import { Category } from "@/modules/category/domain/entities/category";
 
 let inMemoryCategoryRepository: InMemoryCategoryRepository;
 

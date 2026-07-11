@@ -3,7 +3,7 @@ import {
   IPaginatedResult,
 } from "@/shared/repositories/paginated-result";
 import { IQueryParams } from "@/shared/repositories/query-params";
-import { Category } from "../../domain/entities/category-entity";
+import { Category } from "../../domain/entities/category";
 import { CategoryRepository } from "../../domain/repositories/category-repository";
 
 export class InMemoryCategoryRepository implements CategoryRepository {

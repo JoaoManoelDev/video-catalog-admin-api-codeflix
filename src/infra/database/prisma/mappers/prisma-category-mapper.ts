@@ -1,5 +1,5 @@
 import { UniqueEntityID } from "@/shared/entities/unique-entity-id";
-import { Category } from "@/modules/category/domain/entities/category-entity";
+import { Category } from "@/modules/category/domain/entities/category";
 import { Category as PrismaCategory, Prisma } from "@/generated/prisma/client";
 
 export class PrismaCategoryMapper {

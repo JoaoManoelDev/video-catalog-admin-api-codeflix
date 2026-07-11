@@ -2,7 +2,7 @@ import { BadRequestException, Controller, Get, Query } from "@nestjs/common";
 import { Type } from "class-transformer";
 import { IsInt, IsOptional, IsString, Min } from "class-validator";
 
-import { FetchCategoriesUseCase } from "@/modules/category/domain/use-cases/fetch-categories-use-case";
+import { FetchCategoriesUseCase } from "@/modules/category/application/use-cases/fetch-categories";
 import { CategoryPresenter } from "@/infra/http/presenters/category-presenter";
 
 export class FetchCategoriesQueryDto {

@@ -1,8 +1,8 @@
 import { beforeEach, describe, expect, it } from "vitest";
 
 import { InMemoryCategoryRepository } from "../../test/repositories/in-memory-category-repository";
-import { FetchCategoriesUseCase } from "./fetch-categories-use-case";
-import { Category } from "../entities/category-entity";
+import { FetchCategoriesUseCase } from "./fetch-categories";
+import { Category } from "@/modules/category/domain/entities/category";
 
 let inMemoryCategoryRepository: InMemoryCategoryRepository;
 

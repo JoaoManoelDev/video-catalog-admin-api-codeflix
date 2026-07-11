@@ -6,7 +6,7 @@ import { UniqueEntityID } from "@/shared/entities/unique-entity-id";
 import {
   Category,
   ICategoryProps,
-} from "@/modules/category/domain/entities/category-entity";
+} from "@/modules/category/domain/entities/category";
 import { PrismaService } from "@/infra/database/prisma/prisma.service";
 import { PrismaCategoryMapper } from "@/infra/database/prisma/mappers/prisma-category-mapper";
 
