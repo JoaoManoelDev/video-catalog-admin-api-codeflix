@@ -7,6 +7,8 @@
     "start:dev": "nest start --watch",
     "test": "vitest run",
     "test:watch": "vitest",
+    "test:e2e": "vitest run --config ./vitest.config.e2e.ts",
+    "test:e2e:watch": "vitest --config ./vitest.config.e2e.ts",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "prisma:studio": "prisma studio",
@@ -17,11 +19,18 @@
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
+    "@faker-js/faker": "^10.5.0",
     "@nestjs/cli": "^11.0.24",
+    "@nestjs/testing": "^11.1.28",
+    "@swc/core": "^1.15.43",
     "@types/node": "^26.0.0",
     "@types/pg": "^8.20.0",
+    "@types/supertest": "^7.2.0",
     "prisma": "^7.8.0",
+    "supertest": "^7.2.2",
     "typescript": "^6.0.3",
+    "unplugin-swc": "^1.5.9",
+    "vite-tsconfig-paths": "^6.1.1",
     "vitest": "^4.1.9"
   },
   "dependencies": {
