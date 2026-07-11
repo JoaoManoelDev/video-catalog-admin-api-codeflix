@@ -1,3 +1,5 @@
+import { Injectable } from "@nestjs/common";
+
 import { Either, left, right } from "@/shared/errors/either";
 import { ValidationErrors } from "@/shared/validators/validation-errors";
 import { Category } from "../entities/category-entity";
@@ -5,7 +7,7 @@ import { CategoryRepository } from "../repositories/category-repository";
 
 interface ICreateCategoryRequest {
   name: string;
-  description: string;
+  description?: string;
 }
 
 type ICreateCategoryResponse = Either<
@@ -15,6 +17,7 @@ type ICreateCategoryResponse = Either<
   }
 >;
 
+@Injectable()
 export class CreateCategoryUseCase {
   constructor(private categoryRepository: CategoryRepository) {}
 
