@@ -11,6 +11,10 @@ export class ValidationErrors {
     }
   }
 
+  clear(): void {
+    this.errors.clear();
+  }
+
   hasErrors(): boolean {
     return this.errors.size > 0;
   }
