@@ -15,6 +15,14 @@ export class InMemoryCategoryRepository implements CategoryRepository {
     return category;
   }
 
+  async findById(id: string): Promise<Category | null> {
+    const category = this.categories.find(
+      (category) => category.id.toString() === id,
+    );
+
+    return category ?? null;
+  }
+
   async findByName(name: string): Promise<Category | null> {
     const category = this.categories.find(
       (category) => category.toJSON().name === name,
@@ -43,5 +51,25 @@ export class InMemoryCategoryRepository implements CategoryRepository {
       items,
       meta: createPaginationMeta(page, perPage, filteredCategories.length),
     };
+  }
+
+  async save(category: Category): Promise<void> {
+    const itemIndex = this.categories.findIndex(
+      (item) => item.id.toString() === category.id.toString(),
+    );
+
+    if (itemIndex >= 0) {
+      this.categories[itemIndex] = category;
+    }
+  }
+
+  async delete(category: Category): Promise<void> {
+    const itemIndex = this.categories.findIndex(
+      (item) => item.id.toString() === category.id.toString(),
+    );
+
+    if (itemIndex >= 0) {
+      this.categories.splice(itemIndex, 1);
+    }
   }
 }
