@@ -21,6 +21,7 @@ describe("Fetch categories (E2E)", () => {
       new ValidationPipe({
         transform: true,
         whitelist: true,
+        forbidNonWhitelisted: true,
       }),
     );
 
