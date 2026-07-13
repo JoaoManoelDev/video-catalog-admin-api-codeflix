@@ -165,6 +165,46 @@ describe("Category Entity", () => {
     });
   });
 
+  describe("update", () => {
+    test("should update category props", () => {
+      const category = makeCategory({
+        name: "Old name",
+        description: "Old description",
+        isActive: true,
+      });
+
+      category.update({
+        name: "New name",
+        description: "New description",
+        isActive: false,
+      });
+
+      expect(category.toJSON()).toEqual(
+        expect.objectContaining({
+          name: "New name",
+          description: "New description",
+          isActive: false,
+        }),
+      );
+      expect(category.validationErrors.hasErrors()).toBe(false);
+    });
+
+    test("should add validation errors when updated name is invalid", () => {
+      const category = makeCategory({ name: "Movie" });
+
+      category.update({ name: "ab" });
+
+      expect(category.validationErrors.hasErrors()).toBe(true);
+      expect(category.validationErrors.toJSON()).toEqual(
+        expect.arrayContaining([
+          {
+            name: ["name must be longer than or equal to 3 characters"],
+          },
+        ]),
+      );
+    });
+  });
+
   describe("toJSON", () => {
     test("should return a serializable representation of the category", () => {
       const createdAt = new Date("2024-01-01");
