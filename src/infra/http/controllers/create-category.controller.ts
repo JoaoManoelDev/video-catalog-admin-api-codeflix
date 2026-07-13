@@ -1,15 +1,19 @@
 import { BadRequestException, Body, Controller, Post } from "@nestjs/common";
-import { IsOptional, IsString } from "class-validator";
+import { IsBoolean, IsOptional, IsString } from "class-validator";
 
 import { CreateCategoryUseCase } from "@/modules/category/application/use-cases/create-category";
 
 export class CreateCategoryBodyDto {
   @IsString()
-  name!: string;
+  name: string;
 
   @IsOptional()
   @IsString()
   description?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  isActive?: boolean;
 }
 
 @Controller("/categories")
@@ -18,11 +22,12 @@ export class CreateCategoryController {
 
   @Post()
   async handle(@Body() body: CreateCategoryBodyDto) {
-    const { name, description } = body;
+    const { name, description, isActive } = body;
 
     const result = await this.createCategory.execute({
       name,
       description,
+      isActive,
     });
 
     if (result.isLeft()) {
