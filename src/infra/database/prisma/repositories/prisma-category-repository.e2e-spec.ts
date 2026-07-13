@@ -44,6 +44,66 @@ describe("Prisma Category Repository (E2E)", () => {
     expect(found?.toJSON().description).toBe("Created via repository");
   });
 
+  it("should find a category by id", async () => {
+    const category = await categoryFactory.makePrismaCategory({
+      name: `Repo FindById ${Date.now()}`,
+      description: "Find by id",
+    });
+
+    const found = await categoryRepository.findById(category.id.toString());
+
+    expect(found).toBeTruthy();
+    expect(found?.id.toString()).toBe(category.id.toString());
+    expect(found?.toJSON().name).toBe(category.toJSON().name);
+    expect(found?.toJSON().description).toBe("Find by id");
+  });
+
+  it("should return null when category id does not exist", async () => {
+    const found = await categoryRepository.findById(
+      "00000000-0000-0000-0000-000000000000",
+    );
+
+    expect(found).toBeNull();
+  });
+
+  it("should save an updated category", async () => {
+    const category = await categoryFactory.makePrismaCategory({
+      name: `Repo Save ${Date.now()}`,
+      description: "Before update",
+      isActive: true,
+    });
+
+    category.update({
+      name: `Repo Save Updated ${Date.now()}`,
+      description: "After update",
+      isActive: false,
+    });
+
+    await categoryRepository.save(category);
+
+    const found = await categoryRepository.findById(category.id.toString());
+
+    expect(found?.toJSON()).toEqual(
+      expect.objectContaining({
+        name: category.toJSON().name,
+        description: "After update",
+        isActive: false,
+      }),
+    );
+  });
+
+  it("should delete a category", async () => {
+    const category = await categoryFactory.makePrismaCategory({
+      name: `Repo Delete ${Date.now()}`,
+    });
+
+    await categoryRepository.delete(category);
+
+    const found = await categoryRepository.findById(category.id.toString());
+
+    expect(found).toBeNull();
+  });
+
   it("should list categories with search and pagination", async () => {
     const prefix = `RepoList-${Date.now()}`;
 
