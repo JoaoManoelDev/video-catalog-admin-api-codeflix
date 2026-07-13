@@ -20,6 +20,7 @@ describe("Create category (E2E)", () => {
       new ValidationPipe({
         transform: true,
         whitelist: true,
+        forbidNonWhitelisted: true,
       }),
     );
 
@@ -50,6 +51,28 @@ describe("Create category (E2E)", () => {
 
     expect(categoryOnDatabase).toBeTruthy();
     expect(categoryOnDatabase?.description).toBe("Movie category");
+    expect(categoryOnDatabase?.isActive).toBe(true);
+  });
+
+  test("[POST] /categories — with isActive false", async () => {
+    const name = `Inactive-${Date.now()}`;
+
+    const response = await request(app.getHttpServer()).post("/categories").send({
+      name,
+      description: "Inactive category",
+      isActive: false,
+    });
+
+    expect(response.statusCode).toBe(201);
+
+    const categoryOnDatabase = await prisma.category.findFirst({
+      where: {
+        name,
+      },
+    });
+
+    expect(categoryOnDatabase).toBeTruthy();
+    expect(categoryOnDatabase?.isActive).toBe(false);
   });
 
   test("[POST] /categories — invalid name", async () => {
