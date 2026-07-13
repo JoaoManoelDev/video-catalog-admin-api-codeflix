@@ -8,6 +8,7 @@ import { CategoryRepository } from "@/modules/category/domain/repositories/categ
 interface ICreateCategoryRequest {
   name: string;
   description?: string;
+  isActive?: boolean;
 }
 
 type ICreateCategoryResponse = Either<
@@ -24,6 +25,7 @@ export class CreateCategoryUseCase {
   async execute({
     name,
     description,
+    isActive,
   }: ICreateCategoryRequest): Promise<ICreateCategoryResponse> {
     const categoryByName = await this.categoryRepository.findByName(name);
 
@@ -36,6 +38,7 @@ export class CreateCategoryUseCase {
     const category = Category.create({
       name,
       description,
+      isActive,
     });
 
     if (category.validationErrors.hasErrors()) {
