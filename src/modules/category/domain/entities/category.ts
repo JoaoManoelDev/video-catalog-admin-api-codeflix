@@ -24,12 +24,7 @@ export class Category extends Entity<ICategoryProps> {
       id,
     );
 
-    const { name, description, isActive } = category.toJSON();
-
-    CategoryValidator.validate({
-      errors: category.validationErrors,
-      data: { name, description, isActive },
-    });
+    category.validate();
 
     return category;
   }
@@ -46,31 +41,11 @@ export class Category extends Entity<ICategoryProps> {
     this.props.isActive = true;
   }
 
-  deactivate(): void {
+  inactivate(): void {
     this.props.isActive = false;
   }
 
-  update(props: {
-    name?: string;
-    description?: string | null;
-    isActive?: boolean;
-  }): void {
-    if (props.name !== undefined) {
-      this.changeName(props.name);
-    }
-
-    if (props.description !== undefined) {
-      this.changeDescription(props.description);
-    }
-
-    if (props.isActive !== undefined) {
-      if (props.isActive) {
-        this.activate();
-      } else {
-        this.deactivate();
-      }
-    }
-
+  validate(): void {
     this.validationErrors.clear();
 
     const { name, description, isActive } = this.toJSON();
