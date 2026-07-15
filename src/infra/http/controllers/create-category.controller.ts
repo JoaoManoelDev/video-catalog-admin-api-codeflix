@@ -1,20 +1,8 @@
 import { BadRequestException, Body, Controller, Post } from "@nestjs/common";
-import { IsBoolean, IsOptional, IsString } from "class-validator";
 
 import { CreateCategoryUseCase } from "@/modules/category/application/use-cases/create-category";
 
-export class CreateCategoryBodyDto {
-  @IsString()
-  name: string;
-
-  @IsOptional()
-  @IsString()
-  description?: string;
-
-  @IsOptional()
-  @IsBoolean()
-  isActive?: boolean;
-}
+import { CreateCategoryBodyDto } from "../dtos/create-category-body.dto";
 
 @Controller("/categories")
 export class CreateCategoryController {

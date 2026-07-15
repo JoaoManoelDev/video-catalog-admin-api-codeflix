@@ -83,6 +83,14 @@ describe("Create category (E2E)", () => {
     expect(response.statusCode).toBe(400);
   });
 
+  test("[POST] /categories — empty name", async () => {
+    const response = await request(app.getHttpServer()).post("/categories").send({
+      name: "",
+    });
+
+    expect(response.statusCode).toBe(400);
+  });
+
   test("[POST] /categories — duplicate name", async () => {
     const name = `Series-${Date.now()}`;
 
