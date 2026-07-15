@@ -73,11 +73,10 @@ describe("Prisma Category Repository (E2E)", () => {
       isActive: true,
     });
 
-    category.update({
-      name: `Repo Save Updated ${Date.now()}`,
-      description: "After update",
-      isActive: false,
-    });
+    category.changeName(`Repo Save Updated ${Date.now()}`);
+    category.changeDescription("After update");
+    category.inactivate();
+    category.validate();
 
     await categoryRepository.save(category);
 
