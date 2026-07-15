@@ -155,44 +155,43 @@ describe("Category Entity", () => {
     });
   });
 
-  describe("deactivate", () => {
-    test("should deactivate the category", () => {
+  describe("inactivate", () => {
+    test("should inactivate the category", () => {
       const category = makeCategory({ isActive: true });
 
-      category.deactivate();
+      category.inactivate();
 
       expect(category.toJSON().isActive).toBe(false);
     });
   });
 
-  describe("update", () => {
-    test("should update category props", () => {
-      const category = makeCategory({
-        name: "Old name",
-        description: "Old description",
-        isActive: true,
-      });
+  describe("validate", () => {
+    test("should clear previous validation errors", () => {
+      const category = makeCategory({ name: "Movie" });
 
-      category.update({
-        name: "New name",
-        description: "New description",
-        isActive: false,
-      });
+      category.changeName("ab");
+      category.validate();
 
-      expect(category.toJSON()).toEqual(
-        expect.objectContaining({
-          name: "New name",
-          description: "New description",
-          isActive: false,
-        }),
+      expect(category.validationErrors.hasErrors()).toBe(true);
+      expect(category.validationErrors.toJSON()).toEqual(
+        expect.arrayContaining([
+          {
+            name: ["name must be longer than or equal to 3 characters"],
+          },
+        ]),
       );
+
+      category.changeName("Valid name");
+      category.validate();
+
       expect(category.validationErrors.hasErrors()).toBe(false);
     });
 
-    test("should add validation errors when updated name is invalid", () => {
+    test("should add validation errors when name is invalid", () => {
       const category = makeCategory({ name: "Movie" });
 
-      category.update({ name: "ab" });
+      category.changeName("ab");
+      category.validate();
 
       expect(category.validationErrors.hasErrors()).toBe(true);
       expect(category.validationErrors.toJSON()).toEqual(
