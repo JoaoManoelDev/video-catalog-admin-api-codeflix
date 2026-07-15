@@ -7,24 +7,11 @@ import {
   Param,
   Put,
 } from "@nestjs/common";
-import { IsBoolean, IsOptional, IsString } from "class-validator";
 
 import { UpdateCategoryUseCase } from "@/modules/category/application/use-cases/update-category";
 import { ResourceNotFoundError } from "@/shared/errors/resource-not-found-error";
 
-export class UpdateCategoryBodyDto {
-  @IsOptional()
-  @IsString()
-  name?: string;
-
-  @IsOptional()
-  @IsString()
-  description?: string;
-
-  @IsOptional()
-  @IsBoolean()
-  isActive?: boolean;
-}
+import { UpdateCategoryBodyDto } from "../dtos/update-category-body.dto";
 
 @Controller("/categories/:id")
 export class UpdateCategoryController {
