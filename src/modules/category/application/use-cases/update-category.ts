@@ -44,9 +44,23 @@ export class UpdateCategoryUseCase {
         validationErrors.addError("name must be unique", "name");
         return left(validationErrors);
       }
+
+      category.changeName(name);
     }
 
-    category.update({ name, description, isActive });
+    if (description !== undefined) {
+      category.changeDescription(description);
+    }
+
+    if (isActive === true) {
+      category.activate();
+    }
+
+    if (isActive === false) {
+      category.inactivate();
+    }
+
+    category.validate();
 
     if (category.validationErrors.hasErrors()) {
       return left(category.validationErrors);
